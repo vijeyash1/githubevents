@@ -45,7 +45,8 @@ func InsertEvent(connect *sql.DB, metrics model.GithubEvent) {
 		stmt, _ = tx.Prepare("INSERT INTO events (id, reponame, pushername) VALUES (?, ?, ?)")
 	)
 	defer stmt.Close()
-	if _, err := stmt.Exec(); err != nil {
+
+	if _, err := stmt.Exec(metrics.Repository.ID, metrics.Repository.Name, metrics.Pusher.Name); err != nil {
 		log.Fatal(err)
 	}
 	if err := tx.Commit(); err != nil {
