@@ -41,7 +41,10 @@ func main() {
 	// Creates stream
 	err = createStream(js)
 	checkErr(err)
-	publishGithubMetrics(webhookData, js)
+	ok, err := publishGithubMetrics(webhookData, js)
+	if ok {
+		checkErr(err)
+	}
 
 	log.Println("server started")
 	http.HandleFunc("/webhooks", handleWebhook)

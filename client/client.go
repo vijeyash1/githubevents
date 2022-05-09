@@ -50,10 +50,10 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		y, err := yaml.Marshal(metrics.Repository.Owner.Name)
-		if err != nil {
-			fmt.Printf("err: %v\n", err)
-		}
+		//y, err := yaml.Marshal(metrics.Repository.Owner.Name)
+		//if err != nil {
+		//	fmt.Printf("err: %v\n", err)
+		//}
 		//fmt.Printf("Add event: %s \n", y)
 		//log.Printf("Metrics received - subject: %s, ID: %v, Type: %s, Event: %s\n", msg.Subject, metrics.Repository.ID, metrics.Repository.Owner.Name, y)
 		// Insert event

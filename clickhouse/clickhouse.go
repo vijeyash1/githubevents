@@ -8,6 +8,7 @@ import (
 	"webserver/model"
 
 	"github.com/ClickHouse/clickhouse-go"
+	"github.com/google/uuid"
 )
 
 func GetClickHouseConnection() (*sql.DB, error) {
@@ -46,7 +47,7 @@ func InsertEvent(connect *sql.DB, metrics model.GithubEvent) {
 	)
 	defer stmt.Close()
 
-	if _, err := stmt.Exec(metrics.Repository.ID, metrics.Repository.Name, metrics.Pusher.Name); err != nil {
+	if _, err := stmt.Exec(uuid.New(), metrics.Repository.Name, metrics.Pusher.Name); err != nil {
 		log.Fatal(err)
 	}
 	if err := tx.Commit(); err != nil {
